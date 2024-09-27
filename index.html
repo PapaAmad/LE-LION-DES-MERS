@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta name="description" content="Découvrez le luxe en mer avec nos services de croisière VIP et nos yachts prestigieux à Dakar. Profitez de moments uniques à bord du Lion des Mers et bien plus encore. Réservez dès maintenant pour une expérience inoubliable.">
+<title>Le Roi Lion - Navigation de Luxe à Dakar | Une Expérience Royale sur l'Océan</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/gsap.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.11.4/ScrollTrigger.min.js"></script>
+<style>
+  :root {
+    --primary-color: #003366; /* Deep navy blue */
+    --secondary-color: #00BFFF; /* Deep sky blue */
+    --accent-color: #FFD700; /* Gold */
+    --text-color: #FFFFFF; /* White */
+    --background-color: #F0F8FF; /* Alice blue */
+  }
+  
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+
+  body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  .container {
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  header {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    z-index: 1000;
+    transition: all 0.3s ease;
+    align-items: center;
+  }
+
+  .logo {
+    float: left;
+    width: 75px;
+    height: auto;
+    display: block;
+    margin: 0 1rem 0 0;
+    transition: all 0.3s ease;
+  }
+
+  nav {
+    float: right;
+    align-items: center;
+  }
+
+  nav ul {
+    list-style-type: none;
+    align-items: center;
+  }
+
+  nav ul li {
+    display: inline-block;
+    margin-left: 1rem;
+  }
+
+  nav ul li a {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s ease;
+    align-items: center;
+  }
+
+  nav ul li a:hover {
+    color: var(--accent-color);
+  }
+
+  .hero {
+    height: 100vh;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .hero-video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    transform: translateX(-50%) translateY(-50%);
+    z-index: -1;
+  }
+
+  .hero-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    text-align: center;
+    color: var(--text-color);
+    background: rgba(0, 51, 102, 0.7);
+    padding: 2rem;
+    border-radius: 10px;
+  }
+
+  .hero-content h1 {
+    font-size: 4rem;
+    margin-bottom: 0.5rem;
+    color: var(--accent-color);
+  }
+
+  .hero-content h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+  }
+
+  .cta-button {
+    display: inline-block;
+    background-color: var(--accent-color);
+    color: var(--primary-color);
+    padding: 1rem 2rem;
+    text-decoration: none;
+    border-radius: 50px;
+    font-weight: bold;
+    transition: all 0.3s ease;
+  }
+
+  .cta-button:hover {
+    background-color: var(--primary-color);
+    color: var(--accent-color);
+  }
+
+  .services {
+    padding: 6rem 0;
+    background: var(--background-color);
+  }
+
+  .services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 3rem;
+    margin-top: 3rem;
+  }
+
+  .service-card {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+  }
+
+  .service-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+  }
+
+  .service-icon {
+    color: var(--secondary-color);
+    font-size: 3rem;
+    margin-bottom: 1rem;
+  }
+
+  .gallery {
+    padding: 6rem 0;
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+}
+
+.gallery h2 {
+    color: var(--text-color);
+    margin-bottom: 3rem;
+    text-align: center; /* Centrer le titre de la galerie */
+}
+
+.gallery-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+}
+
+.gallery-item {
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    position: relative;
+    display: flex;
+    align-items: center; /* Centre l'image verticalement dans la box */
+    justify-content: center; /* Centre l'image horizontalement dans la box */
+}
+
+.gallery-item img {
+    max-width: 100%;
+    height: auto;
+    object-fit: cover;
+    transition: transform 0.5s ease;
+    display: block; /* Assure que l'image prend la totalité de son parent */
+    margin: 0 auto; /* Centre l'image si nécessaire */
+}
+
+.gallery-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 51, 102, 0.7);
+    color: var(--accent-color);
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+}
+
+.gallery-item:hover img {
+    transform: scale(1.1);
+}
+
+.gallery-item:hover .gallery-overlay {
+    opacity: 1;
+}
+
+
+  .testimonials {
+    padding: 6rem 0;
+    background: var(--background-color);
+  }
+
+  .testimonial-carousel {
+    max-width: 800px;
+    margin: 0 auto;
+    text-align: center;
+  }
+
+  .testimonial {
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    padding: 2rem;
+  }
+
+  .testimonial-text {
+    font-style: italic;
+    margin-bottom: 1rem;
+  }
+
+  .testimonial-author {
+    font-weight: bold;
+    color: var(--secondary-color);
+  }
+
+  footer {
+    background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+    color: var(--text-color);
+    text-align: center;
+    padding: 3rem 0;
+  }
+
+  @media (max-width: 768px) {
+    h1 {
+      font-size: 2.5rem;
+    }
+
+    .hero {
+      height: 100vh;
+    }
+
+    .services-grid,
+    .gallery-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+
+  .fade-in {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  }
+
+  .fade-in.appear {
+    opacity: 1;
+    transform: translateY(0);
+  }
+</style>
+</head>
+<body>
+  <header id="main-header">
+    <div class="container">
+      <img src="assets/IMG-20240927-WA0008.jpg" alt="Le Roi Lion Logo" class="logo" width="100" height="100">
+      <nav>
+        <ul>
+          <li><a href="#services">Services</a></li>
+          <li><a href="#gallery">Flotte</a></li>
+          <li><a href="#contact">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <video autoplay muted loop class="hero-video">
+      <source src="assets/VID-20240927-WA0001.mp4" type="video/mp4">
+    </video>
+    <div class="hero-content">
+      <h1>Le Roi Lion</h1>
+      <h2>Navigation de Luxe à Dakar</h2>
+      <p>Découvrez l'élégance royale sur les eaux de Dakar</p>
+      <a href="#contact" class="cta-button">Réserver votre Aventure</a>
+    </div>
+  </section>
+<!--
+  <section class="video-section"></section>
+    <div class="container">
+        <video controls autoplay muted loop style="width: 100%; height: auto; border-radius: 10px;">
+            <source src="assets/VID-20240927-WA0001.mp4" type="video/mp4">
+            Votre navigateur ne supporte pas la lecture de vidéos HTML5.
+        </video>
+    </div>
+  </section>
+-->
+  <section class="services">
+    <div class="container">
+        <h2 style="color: black;">Nos Services Royaux</h2>
+        <div class="services-grid">
+            <!-- Nouvelle carte de service avec du padding autour du texte -->
+            <div class="service-card fade-in" style="color: black; padding: 20px;">
+                <div class="service-icon" style="color: black;">🛥️</div>
+                <h3 style="color: black;">Le Lion des Mers</h3>
+
+                <p style="color: black;">
+                    <strong>Émerveillez-vous à bord du Lion des Mers</strong>, un bateau d'exception d'une longueur de 13 mètres, 
+                    pouvant accueillir jusqu'à 10 personnes pour une expérience unique.
+                </p>
+
+                <h4 style="color: black;">Pourquoi choisir le Lion des Mers ?</h4>
+                <ul style="color: black;">
+                    <li>Profitez d'une après-midi inoubliable en famille ou entre amis dans la baie de Dakar.</li>
+                    <li>Découvrez la beauté de la nature sous-marine et les vues époustouflantes sur l'océan.</li>
+                    <li>Vivez un moment de tranquillité et de sérénité loin du tumulte quotidien.</li>
+                </ul>
+
+                <h4 style="color: black;">Une expérience magique</h4>
+                <p style="color: black;">
+                    Laissez-vous transporter par la splendeur des paysages marins et par la sensation de détente qui vous envahit. 
+                    Comme l'a si bien dit Nicolas Hulot : <em>« Vagabonder à la surface des océans est souvent source de sérénité et, 
+                    parfois, permet de tutoyer ses rêves »</em>.
+                </p>
+
+                <h4 style="color: black;">Réservez dès maintenant</h4>
+                <p style="color: black;">
+                    <strong>Disponible à partir de Septembre 2024</strong>. Pour plus d'informations et pour réserver votre expérience à bord du Lion des Mers :
+                    <a href="https://wa.me/221778149696" style="color: black;">WhatsApp au 77 814 96 96</a>.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+  <section class="gallery">
+    <div class="container">
+      <h2>Notre Flotte Majestueuse</h2>
+      <div class="gallery-grid">
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0010.jpg" alt="Le Simba, yacht de luxe avec finitions en bois précieux" width="400" height="225">
+          <div class="gallery-overlay">Le Roi Lion</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0009.jpg" alt="Le Zazu, catamaran spacieux avec pont en teck" width="400" height="225">
+          <div class="gallery-overlay">Le pont du roi lion</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0011.jpg" alt="Le Mufasa, yacht à moteur avec jacuzzi sur le pont supérieur" width="400" height="225">
+          <div class="gallery-overlay">Espace détente</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0007.jpg" alt="Le Rafiki, voilier élégant parfait pour les croisières côtières" width="400" height="225">
+          <div class="gallery-overlay">Le Rafiki</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0006.jpg" alt="Croisière au coucher du soleil avec vue sur la côte de Dakar" width="400" height="225">
+          <div class="gallery-overlay">Croisière Sunset</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0005.jpg" alt="Lounge VIP à bord avec bar et sièges en cuir" width="400" height="225">
+          <div class="gallery-overlay">Espage baignade</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0004.jpg" alt="Lounge VIP à bord avec bar et sièges en cuir" width="400" height="225">
+          <div class="gallery-overlay">Une belle vue</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0003.jpg" alt="Lounge VIP à bord avec bar et sièges en cuir" width="400" height="225">
+          <div class="gallery-overlay">À l'aventure</div>
+        </div>
+        <div class="gallery-item fade-in">
+          <img src="assets/IMG-20240927-WA0002.jpg" alt="Lounge VIP à bord avec bar et sièges en cuir" width="400" height="225">
+          <div class="gallery-overlay">Le guide Mufasa</div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer id="contact">
+    <div class="container">
+      <h2>Contactez la Cour Royale</h2>
+      <p>Téléphone : +221 12 345 67 89</p>
+      <p>WhatsApp : +221 12 345 67 89</p>
+      <p>Instagram : @leroilion_nautique</p>
+      <p>&copy; 2023 Le Roi Lion - Navigation de Luxe. Tous droits réservés.</p>
+    </div>
+  </footer>
+
+  <script>
+    gsap.registerPlugin(ScrollTrigger);
+
+    const header = document.querySelector('#main-header');
+    
+    ScrollTrigger.create({
+      start: 'top -80',
+      end: 99999,
+      toggleClass: {className: 'scrolled', targets: header}
+    });
+
+    gsap.utils.toArray('.fade-in').forEach(elem => {
+      gsap.fromTo(elem, 
+        {y: 100, autoAlpha: 0},
+        {
+          duration: 1.25, 
+          y: 0, 
+          autoAlpha: 1,
+          ease: "expo",
+          overwrite: "auto",
+          scrollTrigger: {
+            trigger: elem,
+            start: "top bottom-=100",
+            end: "bottom top",
+            toggleActions: "play none none reverse"
+          }
+        }
+      );
+    });
+
+    const galleryItems = document.querySelectorAll('.gallery-item');
+    
+    galleryItems.forEach(item => {
+      item.addEventListener('mousemove', (e) => {
+        const { left, top, width, height } = item.getBoundingClientRect();
+        const x = (e.clientX - left) / width;
+        const y = (e.clientY - top) / height;
+        
+        gsap.to(item.querySelector('img'), {
+          duration: 0.6,
+          x: (x - 0.5) * 20,
+          y: (y - 0.5) * 20,
+          ease: "power2.out"
+        });
+      });
+      
+      item.addEventListener('mouseleave', () => {
+        gsap.to(item.querySelector('img'), {
+          duration: 0.6,
+          x: 0,
+          y: 0,
+          ease: "power2.out"
+        });
+      });
+    });
+  </script>
+</body></html>
